@@ -42,49 +42,56 @@
 		$db_connection = mysql_connect("localhost", "cs143", "");
 		mysql_select_db("CS143", $db_connection);
 
-		// Grab query
-		$query = "INSERT INTO " . $_GET["typemenu"] . " VALUES (300001, '" . $_GET["lname"] .
-              "', '" . $_GET["fname"] . "', '" . $_GET["sexmenu"] . "', "
-              . str_replace("-", "", $_GET["dob"]) . ", " . $_GET["dod"] . ");";
-		// Sanitizing inputs actually breaks string matching for some reason
-		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
-		$rs = mysql_query($query, $db_connection);
+    // Get Max Id Query
+    $query = "SELECT id FROM MaxPersonID";
+    // Sanitizing inputs actually breaks string matching for some reason
+    // $sanitized_query = mysql_real_escape_string($query, $db_connection);
+    $rs = mysql_query($query, $db_connection);
+    $curid = 0;
+    while ($row = mysql_fetch_row($rs)) {
+      foreach ($row as $val) {
+        if ($val) {
+          $curid = $val;
+          break;
+        }
+      }
+    }
+
+    if($_GET["typemenu"] == "Actor"){
+      // Grab query
+  		$query = "INSERT INTO " . $_GET["typemenu"] . " VALUES (" . $curid . ", '" . $_GET["lname"] .
+                "', '" . $_GET["fname"] . "', '" . $_GET["sexmenu"] . "', "
+                . str_replace("-", "", $_GET["dob"]) . ", " . $_GET["dod"] . ");";
+  		// Sanitizing inputs actually breaks string matching for some reason
+  		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
+  		$rs = mysql_query($query, $db_connection);
+    }else{
+      $query = "INSERT INTO " . $_GET["typemenu"] . " VALUES (" . $curid . ", '" . $_GET["lname"] .
+                "', '" . $_GET["fname"] . "', " . str_replace("-", "", $_GET["dob"])
+                . ", " . $_GET["dod"] . ");";
+  		// Sanitizing inputs actually breaks string matching for some reason
+  		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
+  		$rs = mysql_query($query, $db_connection);
+    }
+
 
 		// Query handling
 		if (!$rs) {
 			echo $query;
 			echo "<br>Invalid query or field. Please enter a valid SELECT query.";
 		}
-		else if (mysql_num_fields($rs)) {
-			echo "<table border=1>";
-
-			// Column name row
-			echo "<tr>";
-			$i = 0;
-			while ($i < mysql_num_fields($rs)) {
-				$schema = mysql_fetch_field($rs);
-				echo "<td> $schema->name </td>";
-				$i++;
-			}
-			echo "</tr>";
-
-			// Everything else
-			while ($row = mysql_fetch_row($rs)) {
-				echo "<tr>";
-				foreach ($row as $val) {
-					echo "<td>";
-					if ($val) echo "$val";
-					else echo "N/A";
-					echo "</td>";
-				}
-				echo "</tr>";
-			}
-
-			echo "</table>";
+		else {
+      // Get Max Id Query
+      $query = "UPDATE MaxPersonID SET id = " . (((int)$curid) + 1) ;
+      // Sanitizing inputs actually breaks string matching for some reason
+      // $sanitized_query = mysql_real_escape_string($query, $db_connection);
+      $rs = mysql_query($query, $db_connection);
+      echo "Successfully added person to database.";
 		}
 
-		mysql_close($db_connection);
+    mysql_close($db_connection);
 	}
+
 	?>
 
 
