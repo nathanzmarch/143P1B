@@ -61,14 +61,14 @@
       // Grab query
   		$query = "INSERT INTO " . $_GET["typemenu"] . " VALUES (" . $curid . ", '" . $_GET["lname"] .
                 "', '" . $_GET["fname"] . "', '" . $_GET["sexmenu"] . "', "
-                . str_replace("-", "", $_GET["dob"]) . ", " . str_replace("-", "", $_GET["dob"]) . ");";
+                . str_replace("-", "", $_GET["dob"]) . ", " . str_replace("-", "", $_GET["dod"]) . ");";
   		// Sanitizing inputs actually breaks string matching for some reason
   		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
   		$rs = mysql_query($query, $db_connection);
     }else{
       $query = "INSERT INTO " . $_GET["typemenu"] . " VALUES (" . $curid . ", '" . $_GET["lname"] .
                 "', '" . $_GET["fname"] . "', " . str_replace("-", "", $_GET["dob"])
-                . ", " . $_GET["dod"] . ");";
+                . ", " . str_replace("-", "", $_GET["dod"]) . ");";
   		// Sanitizing inputs actually breaks string matching for some reason
   		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
   		$rs = mysql_query($query, $db_connection);
