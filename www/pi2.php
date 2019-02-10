@@ -15,7 +15,7 @@
 	</nav>
 
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Add movie</h1><br>
+	<h1>Add movie</h1><br>
 
 	<form action="pi2.php" method="POST">
 		<label>Title:</label>

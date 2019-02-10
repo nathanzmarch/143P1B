@@ -14,7 +14,7 @@
 		<a href="ps1.php">Search</a>
 	</nav>
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Movie Director Relation</h1><br>
+	<h1>Add Movie Director Relation</h1><br>
 	<h5>Please wait while movies and Directors populate.</h5>
 
 	<form action="pi5.php" method="POST">

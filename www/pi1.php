@@ -15,7 +15,7 @@
   </nav>
 
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Add actor or director</h1><br>
+	<h1>Add actor or director</h1><br>
 	<h5>Note: tables and fields are case sensitive.</h5>
 
 	<form action="pi1.php" method="GET">

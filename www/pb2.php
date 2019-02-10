@@ -13,7 +13,7 @@
 		<a href="pi5.php">Add a Director to a Movie</a>
 	</nav>
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Movie Information</h1><br>
+	<h1>Movie Information</h1><br>
 
 	<?php
 	if (isset($_GET["id"])) {

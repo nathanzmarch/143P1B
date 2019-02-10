@@ -11,6 +11,9 @@ nav {
 	height: 100px;
 	width: 100%;
 	display: flex;
+	position: fixed;
+
+	z-index: 9999;
 
 	box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
@@ -52,4 +55,73 @@ nav > a[href="pi3.php"]:hover {background-color: #78647e;}
 nav > a[href="pi4.php"]:hover {background-color: #64758A;}
 nav > a[href="pi5.php"]:hover {background-color: #4A8292;}
 nav > a[href="ps1.php"]:hover {background-color: #3c8d99;}
+
+
+h1 {
+	font-family: Trebuchet MS, sans-serif;
+	color: #434343;
+	margin-top: 160px;
+	margin-bottom: 0;
+	font-size: 2.25em;
+}
+
+h2 {
+	font-family: Trebuchet MS, sans-serif;
+	color: #777;
+	font-size: 1.35em;
+	text-transform: uppercase;
+
+	margin: 80px 0 30px 0;
+}
+
+table {
+  width: 800px;
+  border-collapse: collapse;
+  overflow: hidden;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+th,
+td {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  /* color: #fff; */
+}
+th {
+  text-align: left;
+}
+thead th {
+  background-color: #55608f;
+}
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+tbody td {
+  position: relative;
+}
+tbody td:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: -1;
+}
+
+thead > tr > td {
+	background-color: #434343;
+	color: white;
+
+	font-size: 1.1em;
+	font-family: Trebuchet MS, sans-serif;
+	text-transform: capitalize;
+}
+
+
+
+
+
+
 

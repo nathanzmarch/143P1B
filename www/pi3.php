@@ -20,7 +20,7 @@ mysql_select_db("CS143", $db_connection);
 		<a href="ps1.php">Search</a>
 	</nav>
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Comment</h1><br>
+	<h1>Add Comment</h1><br>
 
 	<form action="pi3.php" method="POST">
 		<label>Username:</label>

@@ -14,7 +14,7 @@
 		<a href="ps1.php">Search</a>
 	</nav>
 
-	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Movie Actor Relation</h1><br>
+	<h1>Add Movie Actor Relation</h1><br>
 	<h5>Please wait while movies and actors populate.</h5>
 
 	<form action="pi4.php" method="POST">
