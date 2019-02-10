@@ -26,7 +26,7 @@
 			if(isset($_POST["actmenu"])){
 					echo "<option selected> " . $_POST["actmenu"];
 			}else{
-					echo "<option selected> --";
+					echo "<option hidden disabled selected value> -- select an actor -- </option>";
 
 					$query = "SELECT CONCAT(first, \" \", last) FROM Actor;";
 					$rs = mysql_query($query, $db_connection);
@@ -51,14 +51,14 @@
 			</select><br>
 
 			Role:
-      <input type="text" name="role" size=20 maxlength=50><br>
+			<input type="text" name="role" size=20 maxlength=50><br>
 			Movie:
 			<select name="movmenu">
 				<?php
 				if(isset($_POST["movmenu"])){
 						echo "<option selected> " . $_POST["movmenu"];
 				}else{
-						echo "<option selected> --";
+						echo "<option hidden disabled selected value> -- select a movie -- </option>";
 						$query = "SELECT title FROM Movie;";
 						$rs = mysql_query($query, $db_connection);
 
@@ -79,10 +79,10 @@
 
 				?>
 				</select><br>
-      <input type="submit" value="Submit" />
-   </form>
+			<input type="submit" value="Submit" />
+	 </form>
 
-   <br>
+	 <br>
 
 	<?php
 	if(!isset($_POST["actmenu"]) and !isset($_POST["movmenu"])){
@@ -95,14 +95,14 @@
 		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
 		$rs = mysql_query($query, $db_connection);
 		$actid = 0;
-    while ($row = mysql_fetch_row($rs)) {
-      foreach ($row as $val) {
-        if ($val) {
-          $actid = $val;
-          break;
-        }
-      }
-    }
+		while ($row = mysql_fetch_row($rs)) {
+			foreach ($row as $val) {
+				if ($val) {
+					$actid = $val;
+					break;
+				}
+			}
+		}
 
 		// Grab query
 		$query = "SELECT id FROM Movie WHERE title ='" . $_POST["movmenu"] . "';";
@@ -110,14 +110,14 @@
 		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
 		$rs = mysql_query($query, $db_connection);
 		$movid = 0;
-    while ($row = mysql_fetch_row($rs)) {
-      foreach ($row as $val) {
-        if ($val) {
-          $movid = $val;
-          break;
-        }
-      }
-    }
+		while ($row = mysql_fetch_row($rs)) {
+			foreach ($row as $val) {
+				if ($val) {
+					$movid = $val;
+					break;
+				}
+			}
+		}
 		// Grab query
 		$query = "INSERT INTO MovieActor VALUES($movid, $actid, '" . $_POST["role"] ."');";
 		// Sanitizing inputs actually breaks string matching for some reason
