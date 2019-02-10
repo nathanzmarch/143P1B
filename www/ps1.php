@@ -20,7 +20,7 @@
 		<form action="ps1.php" method="GET">
 			<div>
 				<label style="color: #434343;">Name: </label>
-				<input type="text" name="name" size=20 maxlength=20>
+				<input required type="text" name="name" size=20 maxlength=20>
 			</div>
 		
 			<input type="submit" value="Submit" />
@@ -29,7 +29,7 @@
 	
 
 	<?php
-	if($_GET["name"]) {
+	if(!empty($_GET["name"])) {
 		// Connection init
 		$db_connection = mysql_connect("localhost", "cs143", "");
 		mysql_select_db("CS143", $db_connection);
@@ -52,15 +52,12 @@
 
 		// Query handling
 		if (!$rs) {
-			echo $query;
-			echo "<br>Invalid query or field. Please enter a valid SELECT query.";
+			echo "<h3>No results matched this query.</h3>";
 		}
 		else if (mysql_num_fields($rs)) {
 				echo "<h2>Actor Results</h2>";
 
-				if (!mysql_num_rows($rs)) {
-					echo "No results matched this query.";
-				}
+				if (!mysql_num_rows($rs)) echo "<h3>No results matched this query.</h3>";
 				else {
 					echo "<table>";
 
@@ -82,7 +79,12 @@
 						echo "<tr>";
 						foreach ($row as $val) {
 							echo "<td>";
-							if ($val) echo "$val";
+							if ($val) {
+								if ($row[0] == $val || $row[1] == $val || $row[2] == $val) {
+									echo "<a href=\"pb1.php?id={$row[0]}\">{$val}</a>";
+								}
+								else echo "$val";
+							}
 							else echo "N/A";
 							echo "</td>";
 						}
@@ -99,7 +101,7 @@
 	?>
 	
 	<?php
-	if($_GET["name"]) {
+	if(!empty($_GET["name"])) {
 		// Connection init
 		$db_connection = mysql_connect("localhost", "cs143", "");
 		mysql_select_db("CS143", $db_connection);
@@ -114,21 +116,18 @@
 		  $query .= "title LIKE '%" . $name[$x] . "%'";
 			if($x == $arrlength - 1) $query .= ";";
 		}
-    // Sanitizing inputs actually breaks string matching for some reason
-    // $sanitized_query = mysql_real_escape_string($query, $db_connection);
-    $rs = mysql_query($query, $db_connection);
+	    $rs = mysql_query($query, $db_connection);
 
 		// Query handling
 		if (!$rs) {
-			echo $query;
-			echo "<br>Invalid query or field. Please enter a valid SELECT query.";
-		}else if (mysql_num_fields($rs)) {
+			echo "<h3>No results matched this query.</h3>";
+		}
+		else if (mysql_num_fields($rs)) {
 				echo "<h2>Matched Movies</h2>";
 
-				if (!mysql_num_rows($rs)) {
-					echo "No results matched this query.";
-				}
+				if (!mysql_num_rows($rs)) echo "<h3>No results matched this query.</h3>";
 				else {
+
 					echo "<table>";
 
 					// Column name row
@@ -150,20 +149,17 @@
 						echo "<tr>";
 						foreach ($row as $val) {
 							echo "<td>";
-							if ($val) echo "$val";
-							else echo "N/A";
+							if ($row[0] == $val || $row[1] == $val) {
+								echo "<a href=\"pb2.php?id={$row[0]}\">{$val}</a>";
+							}
+							else echo "$val";
 							echo "</td>";
 						}
 						echo "</tr>";
-						$found++;
 					}
 					echo "</tbody>";
 
 					echo "</table>";
-					if($found == 0){
-						echo "No results matched this query.";
-					}
-
 				}
 			}
 

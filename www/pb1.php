@@ -11,12 +11,13 @@
 		<a href="pi3.php">Add a Review Comment</a>
 		<a href="pi4.php">Add an Actor to a Movie</a>
 		<a href="pi5.php">Add a Director to a Movie</a>
+		<a href="ps1.php">Search</a>
 	</nav>
 
 	<h1>Actor Information</h1><br>
 
 	<?php
-	if (isset($_GET["id"])) {
+	if (!empty($_GET["id"])) {
 		$db_connection = mysql_connect("localhost", "cs143", "");
 		mysql_select_db("CS143", $db_connection);
 
@@ -27,26 +28,39 @@
 		}
 		else {
 			$row = mysql_fetch_row($rs);
+
+			echo "<section>";
+			echo "<h2>Details</h2>";
+
 			echo "<span>Name: </span><span>$row[2] $row[1]</span><br>";
 			echo "<span>Sex: </span><span>$row[3]</span><br>";
 			echo "<span>DOB: </span><span>$row[4]</span><br>";
 			echo "<span>DOD: </span>";
-			echo (empty($row[5]) ? "<span>N/A</span><br>" : "<span>$row[5]</span><br>");
+			echo (empty($row[5]) ? "<span>N/A</span>" : "<span>$row[5]</span>");
 
+			echo "</section>";
+
+
+			echo "<section>";
 			echo "<h2>Movie Roles</h2>";
 
 			$query = "SELECT * FROM MovieActor WHERE aid={$_GET["id"]}";
 			$rs = mysql_query($query, $db_connection);
-
-			while ($movie_actor_row = mysql_fetch_row($rs)) {
-				$movie_query = "SELECT * FROM Movie WHERE id={$movie_actor_row[0]}";
-				$movie_rs = mysql_query($movie_query, $db_connection);
-				$movie_row = mysql_fetch_row($movie_rs);
-
-				echo "<span>{$movie_actor_row[2]}</span>";
-				echo "<span>in</span>";
-				echo "<a href=\"pb2.php?id={$movie_row[0]}\">{$movie_row[1]}</a><br>";
+			if (!$rs || !mysql_num_rows($rs)) {
+				echo "No roles found.";
 			}
+			else {
+				while ($movie_actor_row = mysql_fetch_row($rs)) {
+					$movie_query = "SELECT * FROM Movie WHERE id={$movie_actor_row[0]}";
+					$movie_rs = mysql_query($movie_query, $db_connection);
+					$movie_row = mysql_fetch_row($movie_rs);
+
+					echo "<span>{$movie_actor_row[2]}</span>";
+					echo "<span> in </span>";
+					echo "<a href=\"pb2.php?id={$movie_row[0]}\">{$movie_row[1]}</a><br>";
+				}
+			}
+			echo "</section>";
 		}	
 
 	}

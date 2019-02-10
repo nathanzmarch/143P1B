@@ -20,18 +20,18 @@ mysql_select_db("CS143", $db_connection);
 		<a href="ps1.php">Search</a>
 	</nav>
 
-	<h1>Add Comment</h1><br>
+	<h1>Add Comment</h1>
 
 	<section>
 		<form action="pi3.php" method="POST">
 			<div>
 				<label>Username:</label>
-				<input type="text" name="username" size=20 maxlength=20>
+				<input required type="text" name="username" size=20 maxlength=20>
 			</div>
 			
 			<div>
 				<label>Movie:</label>
-				<select name="movie">
+				<select required name="movie">
 					<option hidden disabled selected value> -- select a movie -- </option>
 					<?php
 					$query = "SELECT id, title FROM Movie;";
@@ -46,7 +46,7 @@ mysql_select_db("CS143", $db_connection);
 			
 			<div>
 				<label>Rating:</label>
-				<select name="rating">
+				<select required name="rating">
 					<option hidden disabled selected value> -- select a rating -- </option>
 					<option value="5">5 stars</option>
 					<option value="4">4 stars</option>
@@ -58,7 +58,7 @@ mysql_select_db("CS143", $db_connection);
 			
 			<div>
 				<label>Comment:</label>
-				<textarea name="comment" rows="40" cols="50"></textarea>
+				<textarea required name="comment" rows="10" cols="50"></textarea>
 			</div>
 			
 			<input type="submit" value="Submit" />
@@ -67,7 +67,7 @@ mysql_select_db("CS143", $db_connection);
 	
 
 	<?php
-	if (isset($_POST["username"], $_POST["movie"], $_POST["rating"], $_POST["comment"])) {
+	if (!empty($_POST["username"]) && !empty($_POST["movie"]) && !empty($_POST["rating"]) && !empty($_POST["comment"])) {
 
 		$mysql_date_now = date("Y-m-d H:i:s");
 
@@ -79,7 +79,7 @@ mysql_select_db("CS143", $db_connection);
 			echo $query;
 			echo "<br>Invalid field(s).";
 		}
-		else echo "Successfully added comment to database.";
+		else echo "<h3>Successfully added comment to database.</h3>";
 
 		mysql_close($db_connection);
 	}

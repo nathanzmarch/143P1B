@@ -4,6 +4,10 @@
 	<title>Add Movie Director Relation</title>
 	<link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
+<?php 
+$db_connection = mysql_connect("localhost", "cs143", "");
+mysql_select_db("CS143", $db_connection);
+?>
 <body style="display: flex; flex-direction: column; align-items: center;">
 	<nav>
 		<a href="pi1.php">Add a New Actor or Director</a>
@@ -14,123 +18,56 @@
 		<a href="ps1.php">Search</a>
 	</nav>
 
-	<h1>Add Movie Director Relation</h1><br>
+	<h1>Add Movie Director Relation</h1>
 	<h5>Please wait while movies and Directors populate.</h5>
-	<form action="pi5.php" method="POST">
-		Director:
-		<select name="dirmenu">
-			<?php
-			$db_connection = mysql_connect("localhost", "cs143", "");
-			mysql_select_db("CS143", $db_connection);
-			if(isset($_POST["dirmenu"])){
-					echo "<option selected> " . $_POST["dirmenu"];
-			}else{
-					echo "<option hidden disabled selected value> -- select a director -- </option>";
-			}
 
-      $query = "SELECT CONCAT(first, \" \", last) FROM Director;";
-      $rs = mysql_query($query, $db_connection);
+	<section>
+		<form action="pi5.php" method="POST">
+			<div>
+				<label>Director:</label>
+				<select required name="dirmenu">
+					<option hidden disabled selected value> -- select an director -- </option>
+					<?php
+					$query = "SELECT id, CONCAT(first, \" \", last) FROM Director;";
+					$rs = mysql_query($query, $db_connection);
 
-      if (!$rs) {
-        echo $query;
-        echo "<br>Could not obtain Director data.";
-      }else{
-        while ($row = mysql_fetch_row($rs)) {
-          $temp = "<option> ";
-          foreach ($row as $val) {
-            if ($val) $temp .= $val;
-          }
-          echo "$temp";
-        }
-      }
-			?>
-			</select><br>
+					while ($row = mysql_fetch_row($rs)) {
+						echo "<option value=\"{$row[0]}\">{$row[1]}</option>";
+					}
+					?>
+				</select>
+			</div>
+			
+			<div>
+				<label>Movie:</label>
+				<select required name="movmenu">
+					<option hidden disabled selected value> -- select an movie -- </option>
+					<?php
+					$query = "SELECT id, title FROM Movie;";
+					$rs = mysql_query($query, $db_connection);
 
-			Movie:
-			<select name="movmenu">
-				<?php
-				if(isset($_POST["movmenu"])){
-						echo "<option selected> " . $_POST["movmenu"];
-				}else{
-						echo "<option hidden disabled selected value> -- select a movie -- </option>";
-
-				}
-        $query = "SELECT title FROM Movie;";
-        $rs = mysql_query($query, $db_connection);
-
-        if (!$rs) {
-          echo $query;
-          echo "<br>Could not obtain Director data.";
-        }else{
-          while ($row = mysql_fetch_row($rs)) {
-            $temp = "<option> ";
-            foreach ($row as $val) {
-              if ($val) $temp .= $val;
-            }
-            echo "$temp";
-          }
-        }
-
-				?>
-				</select><br>
-      <input type="submit" value="Submit" />
-   </form>
-
-   <br>
+					while ($row = mysql_fetch_row($rs)) {
+						echo "<option value=\"{$row[0]}\">{$row[1]}</option>";
+					}
+					?>
+				</select>
+			</div>
+				
+			<input type="submit" value="Submit" />
+		</form>
+	</section>
 
 	<?php
-	if(!isset($_POST["dirmenu"]) and !isset($_POST["movmenu"])){
-	}else if(isset($_POST["dirmenu"]) and isset($_POST["movmenu"])) {
+	if(!empty($_POST["dirmenu"]) && !empty($_POST["movmenu"])) {
 
-		// Grab query
-		$name = split(" ", $_POST["dirmenu"]);
-		$query = "SELECT id FROM Director WHERE first='$name[0]' and last='$name[1]';";
-		// Sanitizing inputs actually breaks string matching for some reason
-		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
-		$rs = mysql_query($query, $db_connection);
-		$actid = 0;
-    while ($row = mysql_fetch_row($rs)) {
-      foreach ($row as $val) {
-        if ($val) {
-          $actid = $val;
-          break;
-        }
-      }
-    }
-
-		// Grab query
-		$query = "SELECT id FROM Movie WHERE title ='" . $_POST["movmenu"] . "';";
-		// Sanitizing inputs actually breaks string matching for some reason
-		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
-		$rs = mysql_query($query, $db_connection);
-		$movid = 0;
-    while ($row = mysql_fetch_row($rs)) {
-      foreach ($row as $val) {
-        if ($val) {
-          $movid = $val;
-          break;
-        }
-      }
-    }
-		// Grab query
-		$query = "INSERT INTO MovieDirector VALUES($movid, $actid);";
-		// Sanitizing inputs actually breaks string matching for some reason
-		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
+		$query = "INSERT INTO MovieDirector VALUES('{$_POST["movmenu"]}', '{$_POST["dirmenu"]}');";
 		$rs = mysql_query($query, $db_connection);
 
 		// Query handling
-		if (!$rs) {
-			echo $query;
-			echo "<br>Unable to add movie Director relation.";
-		}
-		else {
-			echo "<br>Successfully added movie Director relation.";
-			header("Refresh:0; url=pi5.php");
-		}
+		if (!$rs) echo "<h3>Unable to add movie Director relation.</h3>";
+		else echo "<h3>Successfully added movie Director relation.</h3>";
 
 		mysql_close($db_connection);
-	}else{
-		echo "<br>Invalid field. Please select an Director and movie.";
 	}
 	?>
 

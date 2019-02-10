@@ -15,25 +15,24 @@
 	</nav>
 
 
-	<h1>Add movie</h1><br>
+	<h1>Add movie</h1>
 
 	<section>
 		<form action="pi2.php" method="POST">
 			<div>
 				<label>Title:</label>
-				<input type="text" name="title" size=20 maxlength=20>
+				<input required type="text" name="title" size=20 maxlength=20>
 			</div>
 			
 
 			<div>
 				<label>Year:</label>
-				<input type="number" name="year" size=20 maxlength=20>
+				<input required type="number" name="year" size=20 maxlength=20>
 			</div>
 
 			<div>
 				<label>MPAA Rating:</label>
-				<select name="rating">
-					<option hidden disabled selected value> -- select a rating -- </option>
+				<select required name="rating">
 					<option value="G">G</option>
 					<option value="PG">PG</option>
 					<option value="PG-13">PG-13</option>
@@ -46,7 +45,6 @@
 				<label>Company:</label>
 				<input type="text" name="company" size=20 maxlength=20>
 			</div>
-			
 
 			<input type="submit" value="Submit" />
 		</form>
@@ -54,7 +52,7 @@
 	
 
 	<?php
-	if (isset($_POST["title"], $_POST["year"], $_POST["rating"], $_POST["company"])) {
+	if (!empty($_POST["title"]) && !empty($_POST["year"]) && !empty($_POST["rating"])) {
 
 		// Connection init
 		$db_connection = mysql_connect("localhost", "cs143", "");
@@ -68,7 +66,10 @@
 			$id++;
 		}
 
-		$query = "INSERT INTO Movie (id, title, year, rating, company) VALUES ({$id}, '{$_POST["title"]}', {$_POST["year"]}, '{$_POST["rating"]}', '{$_POST["company"]}');";
+		if (empty($_POST["company"])) $comp = "NULL";
+        else $comp = "'{$_POST["company"]}'";
+
+		$query = "INSERT INTO Movie (id, title, year, rating, company) VALUES ({$id}, '{$_POST["title"]}', {$_POST["year"]}, '{$_POST["rating"]}', {$comp});";
 
 		$rs = mysql_query($query, $db_connection);
 		// Query handling
@@ -76,7 +77,7 @@
 			echo $query;
 			echo "<br>Invalid field(s).";
 		}
-		else echo "Successfully added movie to database.";
+		else echo "<h3>Successfully added movie to database.";
 
 		mysql_close($db_connection);
 	}
