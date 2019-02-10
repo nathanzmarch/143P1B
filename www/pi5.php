@@ -16,19 +16,18 @@
 
 	<h1>Add Movie Director Relation</h1><br>
 	<h5>Please wait while movies and Directors populate.</h5>
-
 	<form action="pi5.php" method="POST">
 		Director:
-		<select name="actmenu">
+		<select name="dirmenu">
 			<?php
 			$db_connection = mysql_connect("localhost", "cs143", "");
 			mysql_select_db("CS143", $db_connection);
-			if(isset($_POST["actmenu"])){
-					echo "<option selected> " . $_POST["actmenu"];
+			if(isset($_POST["dirmenu"])){
+					echo "<option selected> " . $_POST["dirmenu"];
 			}else{
-					echo "<option selected> --";
+					echo "<option hidden disabled selected value> -- select a director -- </option>";
 			}
-      
+
       $query = "SELECT CONCAT(first, \" \", last) FROM Director;";
       $rs = mysql_query($query, $db_connection);
 
@@ -53,7 +52,7 @@
 				if(isset($_POST["movmenu"])){
 						echo "<option selected> " . $_POST["movmenu"];
 				}else{
-						echo "<option selected> --";
+						echo "<option hidden disabled selected value> -- select a movie -- </option>";
 
 				}
         $query = "SELECT title FROM Movie;";
@@ -80,11 +79,11 @@
    <br>
 
 	<?php
-	if(!isset($_POST["actmenu"]) and !isset($_POST["movmenu"])){
-	}else if(isset($_POST["actmenu"]) and isset($_POST["movmenu"])) {
+	if(!isset($_POST["dirmenu"]) and !isset($_POST["movmenu"])){
+	}else if(isset($_POST["dirmenu"]) and isset($_POST["movmenu"])) {
 
 		// Grab query
-		$name = split(" ", $_POST["actmenu"]);
+		$name = split(" ", $_POST["dirmenu"]);
 		$query = "SELECT id FROM Director WHERE first='$name[0]' and last='$name[1]';";
 		// Sanitizing inputs actually breaks string matching for some reason
 		// $sanitized_query = mysql_real_escape_string($query, $db_connection);
