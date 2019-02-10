@@ -1,51 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add actor or director</title>
-  <link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>Add actor or director</title>
+    <link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
-  <nav>
-    <a style="background-color: #a84c6c; color: white;" href="pi1.php">Add a New Actor or Director</a>
-    <a href="pi2.php">Add a New Movie</a>
-    <a href="pi3.php">Add a Review Comment</a>
-    <a href="pi4.php">Add an Actor to a Movie</a>
-    <a href="pi5.php">Add a Director to a Movie</a>
-    <a href="ps1.php">Search</a>
-  </nav>
+    <nav>
+        <a style="background-color: #a84c6c; color: white;" href="pi1.php">Add a New Actor or Director</a>
+        <a href="pi2.php">Add a New Movie</a>
+        <a href="pi3.php">Add a Review Comment</a>
+        <a href="pi4.php">Add an Actor to a Movie</a>
+        <a href="pi5.php">Add a Director to a Movie</a>
+        <a href="ps1.php">Search</a>
+    </nav>
 
+    <h1>Add actor or director</h1>
 
-	<h1>Add actor or director</h1><br>
-	<h5>Note: tables and fields are case sensitive.</h5>
+    <section>
+        <form action="pi1.php" method="GET">
+            <div>
+                <label>Type: </label>
+                <select name="typemenu">
+                    <option selected> Actor
+                    <option> Director
+                </select>
+            </div>
+            
+            <div>
+                <label>First Name: </label>
+                <input type="text" name="fname" size=20 maxlength=20>
+            </div>
+            
+            <div>
+                <label>Last Name: </label>
+                <input type="text" name="lname" size=20 maxlength=20>
+            </div>
+            
+            <div>
+                <label>Sex: </label>
+                <select name="sexmenu">
+                    <option selected> Male
+                    <option> Female
+                    <option> Other
+                </select>
+            </div>
 
-	<form action="pi1.php" method="GET">
-      Type:
-      <select name="typemenu">
-        <option selected> Actor
-        <option> Director
-      </select><br>
-      First Name:
-      <input type="text" name="fname" size=20 maxlength=20><br>
-      Last Name:
-      <input type="text" name="lname" size=20 maxlength=20><br>
-      Sex:
-      <select name="sexmenu">
-        <option selected> Male
-        <option> Female
-        <option> Other
-      </select><br>
-      Date of Birth:
-      <input type="text" name="dob" size=20 maxlength=20>
-       YYYY-MM-DD
-      <br>
-      Date of Death:
-      <input type="text" name="dod" value="NULL"size=20 maxlength=20>
-       YYYY-MM-DD
-      <br>
-      <input type="submit" value="Submit" />
-   </form>
+            <div>
+                <label>Date of Birth (YYYY-MM-DD): </label>
+                <input type="text" name="dob" size=20 maxlength=20>
+            </div>
 
-   <br>
+            <div>
+                <label>Date of Death (YYYY-MM-DD): </label>
+                <input type="text" name="dod" value="NULL"size=20 maxlength=20>
+            </div>
+            
+            <input type="submit" value="Submit" />
+        </form>
+    </section>
 
 	<?php
 	if($_GET["fname"] and $_GET["lname"]) {

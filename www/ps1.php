@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Search for movie of actor information</title>
+	<title>Search for movie or actor</title>
 	<link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
@@ -14,16 +14,20 @@
 		<a style="background-color: #3c8d99; color: white;" href="ps1.php">Search</a>
 	</nav>
 
-	<h1>Search for movie of actor information</h1><br>
-	<h5>Note: tables and fields are case sensitive.</h5>
+	<h1>Search for movie or actor</h1>
 
-	<form action="ps1.php" method="GET">
-      Name:
-      <input type="text" name="name" size=20 maxlength=20><br>
-      <input type="submit" value="Submit" />
-   </form>
+	<section>
+		<form action="ps1.php" method="GET">
+			<div>
+				<label style="color: #434343;">Name: </label>
+				<input type="text" name="name" size=20 maxlength=20>
+			</div>
+		
+			<input type="submit" value="Submit" />
+		</form>
+	</section>
+	
 
-   <br>
 	<?php
 	if($_GET["name"]) {
 		// Connection init

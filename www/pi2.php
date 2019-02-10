@@ -17,30 +17,41 @@
 
 	<h1>Add movie</h1><br>
 
-	<form action="pi2.php" method="POST">
-		<label>Title:</label>
-		<input type="text" name="title" size=20 maxlength=20><br>
+	<section>
+		<form action="pi2.php" method="POST">
+			<div>
+				<label>Title:</label>
+				<input type="text" name="title" size=20 maxlength=20>
+			</div>
+			
 
-		<label>Year:</label>
-		<input type="number" name="year" size=20 maxlength=20><br>
+			<div>
+				<label>Year:</label>
+				<input type="number" name="year" size=20 maxlength=20>
+			</div>
 
-		<label>MPAA Rating:</label>
-		<select name="rating">
-			<option hidden disabled selected value> -- select a rating -- </option>
-			<option value="G">G</option>
-			<option value="PG">PG</option>
-			<option value="PG-13">PG-13</option>
-			<option value="R">R</option>
-			<option value="NC-17">NC-17</option>
-		</select><br>
+			<div>
+				<label>MPAA Rating:</label>
+				<select name="rating">
+					<option hidden disabled selected value> -- select a rating -- </option>
+					<option value="G">G</option>
+					<option value="PG">PG</option>
+					<option value="PG-13">PG-13</option>
+					<option value="R">R</option>
+					<option value="NC-17">NC-17</option>
+				</select>
+			</div>
+			
+			<div>
+				<label>Company:</label>
+				<input type="text" name="company" size=20 maxlength=20>
+			</div>
+			
 
-		<label>Company:</label>
-		<input type="text" name="company" size=20 maxlength=20><br>
-
-		<br>
-		<input type="submit" value="Submit" />
-	</form>
-	<br>
+			<input type="submit" value="Submit" />
+		</form>
+	</section>
+	
 
 	<?php
 	if (isset($_POST["title"], $_POST["year"], $_POST["rating"], $_POST["company"])) {
