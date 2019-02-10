@@ -91,7 +91,7 @@
 			else {
 				echo "<h4>Average score of {$review_average_row[0]} from {$review_average_row[1]} reviews.</h4>";
 
-				$query = "SELECT * FROM Review R WHERE R.mid={$_GET["id"]}";
+				$query = "SELECT name AS 'username', time, rating, comment FROM Review R WHERE R.mid={$_GET["id"]}";
 				$rs = mysql_query($query, $db_connection);
 
 				echo "<table>";
