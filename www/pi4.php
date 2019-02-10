@@ -9,8 +9,9 @@
 		<a href="pi1.php">Add a New Actor or Director</a>
 		<a href="pi2.php">Add a New Movie</a>
 		<a href="pi3.php">Add a Review Comment</a>
-		<a style="background-color: #241f3c; color: white;" href="pi4.php">Add an Actor to a Movie</a>
+		<a style="background-color: #64758A; color: white;" href="pi4.php">Add an Actor to a Movie</a>
 		<a href="pi5.php">Add a Director to a Movie</a>
+		<a href="ps1.php">Search</a>
 	</nav>
 
 	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Movie Actor Relation</h1><br>

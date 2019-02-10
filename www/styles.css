@@ -26,14 +26,14 @@ nav > a {
 	text-decoration: none;
 	color: #434343;
 
-	font-size: 1.75em;
+	font-size: 1.6em;
 	font-family: Trebuchet MS, sans-serif;
 	font-weight: 600;
 	text-transform: uppercase;
 
 	border-right: 1px dashed rgba(0,0,0,0.15);
 
-	padding: 0 20px;
+	padding: 0 15px;
 
 	outline: none;
 
@@ -46,9 +46,10 @@ nav > a:last-of-type {
 }
 
 nav > a:hover {color: white;}
-nav > a[href="pi1.php"]:hover {background-color: #7a273e;}
-nav > a[href="pi2.php"]:hover {background-color: #5d233d;}
-nav > a[href="pi3.php"]:hover {background-color: #40213c;}
-nav > a[href="pi4.php"]:hover {background-color: #241f3c;}
-nav > a[href="pi5.php"]:hover {background-color: #0c1e3c;}
+nav > a[href="pi1.php"]:hover {background-color: #a84c6c;}
+nav > a[href="pi2.php"]:hover {background-color: #965573;}
+nav > a[href="pi3.php"]:hover {background-color: #78647e;}
+nav > a[href="pi4.php"]:hover {background-color: #64758A;}
+nav > a[href="pi5.php"]:hover {background-color: #4A8292;}
+nav > a[href="ps1.php"]:hover {background-color: #3c8d99;}
 

@@ -6,11 +6,12 @@
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
   <nav>
-    <a style="background-color: #7a273e; color: white;" href="pi1.php">Add a New Actor or Director</a>
+    <a style="background-color: #a84c6c; color: white;" href="pi1.php">Add a New Actor or Director</a>
     <a href="pi2.php">Add a New Movie</a>
     <a href="pi3.php">Add a Review Comment</a>
     <a href="pi4.php">Add an Actor to a Movie</a>
     <a href="pi5.php">Add a Director to a Movie</a>
+    <a href="ps1.php">Search</a>
   </nav>
 
 
