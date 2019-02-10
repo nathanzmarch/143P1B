@@ -16,6 +16,7 @@
 
 		<label>MPAA Rating:</label>
 		<select name="rating">
+			<option hidden disabled selected value> -- select a rating -- </option>
 			<option value="G">G</option>
 			<option value="PG">PG</option>
 			<option value="PG-13">PG-13</option>
