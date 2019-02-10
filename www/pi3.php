@@ -11,6 +11,14 @@ mysql_select_db("CS143", $db_connection);
 ?>
 
 <body style="display: flex; flex-direction: column; align-items: center;">
+	<nav>
+		<a href="pi1.php">Add a New Actor or Director</a>
+		<a href="pi2.php">Add a New Movie</a>
+		<a style="background-color: #40213c; color: white;" href="pi3.php">Add a Review Comment</a>
+		<a href="pi4.php">Add an Actor to a Movie</a>
+		<a href="pi5.php">Add a Director to a Movie</a>
+	</nav>
+
 	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Comment</h1><br>
 
 	<form action="pi3.php" method="POST">

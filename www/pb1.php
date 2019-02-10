@@ -5,6 +5,14 @@
 	<link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
+	<nav>
+		<a href="pi1.php">Add a New Actor or Director</a>
+		<a href="pi2.php">Add a New Movie</a>
+		<a href="pi3.php">Add a Review Comment</a>
+		<a href="pi4.php">Add an Actor to a Movie</a>
+		<a href="pi5.php">Add a Director to a Movie</a>
+	</nav>
+
 	<h1 style="margin-top: 100px; margin-bottom: 0;">Actor Information</h1><br>
 
 	<?php
@@ -14,11 +22,10 @@
 
 		$query = "SELECT * FROM Actor WHERE id={$_GET["id"]}";
 		$rs = mysql_query($query, $db_connection);
-		if (!$rs) {
-			echo $query;
-			echo "<br>Invalid actor ID.";
+		if (!$rs || !mysql_num_rows($rs)) {
+			echo "Invalid actor ID.";
 		}
-		else if (mysql_num_fields($rs)) {
+		else {
 			$row = mysql_fetch_row($rs);
 			echo "<span>Name: </span><span>$row[2] $row[1]</span><br>";
 			echo "<span>Sex: </span><span>$row[3]</span><br>";

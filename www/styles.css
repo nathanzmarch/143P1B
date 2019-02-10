@@ -1,0 +1,54 @@
+/* section {
+	width: 50%;
+} */
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+nav {
+	height: 100px;
+	width: 100%;
+	display: flex;
+
+	box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+}
+
+nav > a {
+	height: 100%;
+	flex: 1 1 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	text-decoration: none;
+	color: #434343;
+
+	font-size: 1.75em;
+	font-family: Trebuchet MS, sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
+
+	border-right: 1px dashed rgba(0,0,0,0.15);
+
+	padding: 0 20px;
+
+	outline: none;
+
+	background-color: white;
+	transition: all 0.2s ease;
+}
+
+nav > a:last-of-type {
+	border-right: none;
+}
+
+nav > a:hover {color: white;}
+nav > a[href="pi1.php"]:hover {background-color: #7a273e;}
+nav > a[href="pi2.php"]:hover {background-color: #5d233d;}
+nav > a[href="pi3.php"]:hover {background-color: #40213c;}
+nav > a[href="pi4.php"]:hover {background-color: #241f3c;}
+nav > a[href="pi5.php"]:hover {background-color: #0c1e3c;}
+

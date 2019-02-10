@@ -2,8 +2,17 @@
 <html>
 <head>
 	<title>Add Movie Director Relation</title>
+	<link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
+	<nav>
+		<a href="pi1.php">Add a New Actor or Director</a>
+		<a href="pi2.php">Add a New Movie</a>
+		<a href="pi3.php">Add a Review Comment</a>
+		<a href="pi4.php">Add an Actor to a Movie</a>
+		<a style="background-color: #0c1e3c; color: white;" href="pi5.php">Add a Director to a Movie</a>
+	</nav>
+
 	<h1 style="margin-top: 100px; margin-bottom: 0;">Add Movie Director Relation</h1><br>
 	<h5>Please wait while movies and Directors populate.</h5>
 
