@@ -22,11 +22,11 @@
 				<label style="color: #434343;">Name: </label>
 				<input required type="text" name="name" size=20 maxlength=20>
 			</div>
-		
+
 			<input type="submit" value="Submit" />
 		</form>
 	</section>
-	
+
 
 	<?php
 	if(!empty($_GET["name"])) {
@@ -41,11 +41,9 @@
 
 		for($x = 0; $x < $arrlength; $x++) {
 			if($x > 0) $query .= " and ";
-		  $query .= "(first = '" . $name[$x] . "' or last = '" . $name[$x] . "')";
+		  $query .= "(first LIKE '%" . $name[$x] . "%' or last LIKE '%" . $name[$x] . "%')";
 			if($x == $arrlength - 1) $query .= ";";
 		}
-
-
     // Sanitizing inputs actually breaks string matching for some reason
     // $sanitized_query = mysql_real_escape_string($query, $db_connection);
     $rs = mysql_query($query, $db_connection);
@@ -99,7 +97,7 @@
 		}
 
 	?>
-	
+
 	<?php
 	if(!empty($_GET["name"])) {
 		// Connection init
