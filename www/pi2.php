@@ -24,6 +24,10 @@
 				<input required type="text" name="title" size=20 maxlength=20>
 			</div>
 			
+			<div>
+				<label>Company:</label>
+				<input type="text" name="company" size=20 maxlength=20>
+			</div>
 
 			<div>
 				<label>Year:</label>
@@ -40,10 +44,84 @@
 					<option value="NC-17">NC-17</option>
 				</select>
 			</div>
-			
-			<div>
-				<label>Company:</label>
-				<input type="text" name="company" size=20 maxlength=20>
+
+			<div id="genre-boxes">
+				<label>Genre:</label>
+				<div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Action">
+						<label>Action</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Adult">
+						<label>Adult</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Animation">
+						<label>Animation</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Comedy">
+						<label>Comedy</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Crime">
+						<label>Crime</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Documentary">
+						<label>Documentary</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Drama">
+						<label>Drama</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Family">
+						<label>Family</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Fantasy">
+						<label>Fantasy</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Horror">
+						<label>Horror</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Musical">
+						<label>Musical</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Mystery">
+						<label>Mystery</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Romance">
+						<label>Romance</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Sci-Fi">
+						<label>Sci-Fi</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Short">
+						<label>Short</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Thriller">
+						<label>Thriller</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="War">
+						<label>War</label>
+					</div>
+					<div>
+						<input type="checkbox" name="genre_list[]" value="Western">
+						<label>Western</label>
+					</div>
+				</div>
+
 			</div>
 
 			<input type="submit" value="Submit" />
@@ -75,7 +153,23 @@
 		// Query handling
 		if (!$rs) {
 			echo $query;
-			echo "<br>Invalid field(s).";
+			echo "<h3>Invalid field(s).</h3>";
+		}
+
+		if (!empty($_POST['genre_list'])) {
+			foreach ($_POST['genre_list'] as $selected) {
+				$query = "INSERT INTO MovieGenre (mid, genre) VALUES ({$id}, '{$selected}')";
+				$rs = mysql_query($query, $db_connection);
+				if (!$rs) {
+					echo $query;
+					echo "<h3>Invalid genre(s).</h3>";
+				}
+			}
+		}
+
+		if (!$rs) {
+			echo $query;
+			echo "<h3>Invalid genre(s).</h3>";
 		}
 		else echo "<h3>Successfully added movie to database.";
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Search for movie or actor</title>
+	<title>Search for a movie or actor</title>
 	<link href="styles.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body style="display: flex; flex-direction: column; align-items: center;">
@@ -14,7 +14,7 @@
 		<a style="background-color: #3c8d99; color: white;" href="ps1.php">Search</a>
 	</nav>
 
-	<h1>Search for movie or actor</h1>
+	<h1>Search for a movie or actor</h1>
 
 	<section>
 		<form action="ps1.php" method="GET">
